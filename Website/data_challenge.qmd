@@ -1,15 +1,16 @@
 ---
-jupyter: python3
+format:
+  html:
+    self-contained: true
 ---
 
 ![](https://datasciencebocconi.github.io/Images/Other/logoBocconi.png)
-
 
 # Data science challenge
 
 The competition will take place in the Data Science challenges platform, which is available at the following link:
 
-https://data-science-challenges.unibocconi.it
+<https://data-science-challenges.unibocconi.it>
 
 You must login with your credentials to enter the competition. There you will find a copy of the training and test datasets. However, a copy of the data is also available on the github repository and can be downloaded using the code provided in this notebook.
 
@@ -51,10 +52,10 @@ import numpy as np
 #| colab: {base_uri: 'https://localhost:8080/', height: 483}
 #| outputId: 66554189-0db5-4484-9fdc-09c6cea9e504
 # The training dataset comprises 3101 rows and 58 columns
-spam = pd.read_csv("https://tommasorigon.github.io/DataScienceCourse/Data/spam_train.csv")
+spam = pd.read_csv("https://datasciencebocconi.github.io/Data/spam_train.csv")
 
 # The training dataset comprises 1500 rows and 57 columns (the label `response` is not available)
-spam_pred = pd.read_csv("https://tommasorigon.github.io/DataScienceCourse/Data/spam_test.csv")
+spam_pred = pd.read_csv("https://datasciencebocconi.github.io/Data/spam_test.csv")
 
 # Let's have a look at the training dataset
 spam
