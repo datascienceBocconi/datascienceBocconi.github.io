@@ -1,3 +1,3 @@
-# Data Science Courses
+# Data Science courses at Bocconi
 
-Datasets and images for academic purposes
+Website of the course: https://datascienceBocconi.github.io/
