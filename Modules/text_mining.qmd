@@ -1,20 +1,22 @@
 ---
+jupyter: python3
 format:
   html:
+    theme: cosmo
+    toc: true
+    toc-title: Table of contents
     self-contained: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ![](https://datasciencebocconi.github.io/Images/Other/logoBocconi.png)
 
-# Data science challenge
+# Text mining
 
-The competition will take place in the Data Science challenges platform, which is available at the following link:
 
-<https://data-science-challenges.unibocconi.it>
-
-You must login with your credentials to enter the competition. There you will find a copy of the training and test datasets. However, a copy of the data is also available on the github repository and can be downloaded using the code provided in this notebook.
-
-## The SPAM dataset
+## The IMDB dataset
 
 Spam classifiers are fundamental algorithms to process incoming e-mails and label them as spam or non-spam based on text characteristics, such as counts of particular words. In this data challenge you are asked to create a **spam classifier** using data from a training set. Your proposal will be evaluated on its **accuracy** in classifying unlabeled e-mails in a test set.
 
@@ -37,20 +39,12 @@ There are **57 input variables** which are described below.
 You can either download the data from the https://data-science-challenges.unibocconi.it platform or you can use the following code.
 
 ```{python}
-#| id: K5eGNuhSjilA
-#| executionInfo: {elapsed: 7, status: ok, timestamp: 1645860452886, user: {displayName: Tommaso Rigon, photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhoZ5uPN0szloXuIfFrSIPrIdooEMh4LTdjPP22=s64', userId: 08861669753495411183}, user_tz: -60}
-#| id: K5eGNuhSjilA
 # Import basic libraries
 import pandas as pd
 import numpy as np
 ```
 
 ```{python}
-#| id: q_gLRhfzjilB
-#| executionInfo: {elapsed: 1813, status: ok, timestamp: 1645860457574, user: {displayName: Tommaso Rigon, photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhoZ5uPN0szloXuIfFrSIPrIdooEMh4LTdjPP22=s64', userId: 08861669753495411183}, user_tz: -60}
-#| id: q_gLRhfzjilB
-#| colab: {base_uri: 'https://localhost:8080/', height: 483}
-#| outputId: 66554189-0db5-4484-9fdc-09c6cea9e504
 # The training dataset comprises 3101 rows and 58 columns
 spam = pd.read_csv("https://datasciencebocconi.github.io/Data/spam_train.csv")
 
@@ -66,9 +60,6 @@ spam
 We implement in the following a very simple model (naive Bayes classifier) to illustrate how to submit your prediction.
 
 ```{python}
-#| id: pK_zW3KCjilD
-#| executionInfo: {elapsed: 342, status: ok, timestamp: 1645860483447, user: {displayName: Tommaso Rigon, photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhoZ5uPN0szloXuIfFrSIPrIdooEMh4LTdjPP22=s64', userId: 08861669753495411183}, user_tz: -60}
-#| id: pK_zW3KCjilD
 # Drop the `response` column, which is the binary outcome we wish to predict
 X = spam.drop('response', axis = 1)
 
@@ -77,11 +68,6 @@ y = spam["response"]
 ```
 
 ```{python}
-#| id: RNxeSXKujilD
-#| colab: {base_uri: 'https://localhost:8080/'}
-#| executionInfo: {elapsed: 624, status: ok, timestamp: 1645860486980, user: {displayName: Tommaso Rigon, photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhoZ5uPN0szloXuIfFrSIPrIdooEMh4LTdjPP22=s64', userId: 08861669753495411183}, user_tz: -60}
-#| id: RNxeSXKujilD
-#| outputId: 194e5863-32c4-4ad8-9026-0014fa5ca3de
 # Import a naive Bayes function
 from sklearn.naive_bayes import GaussianNB
 
