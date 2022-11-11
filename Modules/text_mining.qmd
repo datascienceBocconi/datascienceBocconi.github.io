@@ -9,34 +9,32 @@ format:
 editor: 
   markdown: 
     wrap: 72
+editor_options: 
+  chunk_output_type: console
 ---
 
 ![](https://datasciencebocconi.github.io/Images/Other/logoBocconi.png)
+
+
+# Preliminaries
+
+## String manipulation
+
+## Regular expressions
 
 # Text mining
 
 
 ## The IMDB dataset
 
-Spam classifiers are fundamental algorithms to process incoming e-mails and label them as spam or non-spam based on text characteristics, such as counts of particular words. In this data challenge you are asked to create a **spam classifier** using data from a training set. Your proposal will be evaluated on its **accuracy** in classifying unlabeled e-mails in a test set.
+assd
 
 #### Description
 
-The dataset consists of information from *4601* **e-mail messages**, in a study to screen e-mail for `spam`. For *3101* of these e-mails you known whether they are spam (`response = 2`) or non-spam (`response = 1`), and you have additional input variables describing several features of each e-mail. For the other *1500* e-mails, you have only information on the inputs.
+asdad
 
-**Your goal** is to construct a classifier which has good performance in labeling the remaining *1500* e-mails as spam or non-spam.
+#### Import the data
 
-There are **57 input variables** which are described below.
-
--   48 quantitative predictors measuring the **percentage of words** in the e-mail that match a given word. Examples include `business`, `address`, `internet`
-
--   6 quantitative predictors measuring the **percentage of specific characters/symbols** found in the e-mail. These are `charSemicolon`, `charRoundbracket`, `charSquarebracket`, `charExclamation`, `charDollar` and `charHash`.
-
--   Average length of uninterrupted sequences of **capital letters** (`capitalAve`). Length of the longest uninterrupted sequence of capital letters (`capitalLong`). Sum of the length of uninterrupted sequences of capital letters (`CapitaTotal`).
-
-## Import the data
-
-You can either download the data from the https://data-science-challenges.unibocconi.it platform or you can use the following code.
 
 ```{python}
 # Import basic libraries
@@ -45,70 +43,14 @@ import numpy as np
 ```
 
 ```{python}
-# The training dataset comprises 3101 rows and 58 columns
-spam = pd.read_csv("https://datasciencebocconi.github.io/Data/spam_train.csv")
-
-# The training dataset comprises 1500 rows and 57 columns (the label `response` is not available)
-spam_pred = pd.read_csv("https://datasciencebocconi.github.io/Data/spam_test.csv")
-
-# Let's have a look at the training dataset
-spam
-```
-
-## Submit a prediction
-
-We implement in the following a very simple model (naive Bayes classifier) to illustrate how to submit your prediction.
-
-```{python}
-# Drop the `response` column, which is the binary outcome we wish to predict
-X = spam.drop('response', axis = 1)
-
-# Here we create the binary outcome
-y = spam["response"]
+# Let us import the dataset (it may require some time)
+imdb = pd.read_csv('https://datasciencebocconi.github.io/Data/IMDB.csv')
+print(imdb.shape) # Size of the dataset
 ```
 
 ```{python}
-# Import a naive Bayes function
-from sklearn.naive_bayes import GaussianNB
-
-# Fit a naive Bayes Classifier
-m_naive_bayes = GaussianNB()
-
-# Fit the logistic regression model
-m_naive_bayes.fit(X, y)
-
-# Predict values on the prediction set
-y_naive_bayes_pred = m_naive_bayes.predict(spam_pred)
-y_naive_bayes_pred
+imdb.head(20)
 ```
 
-Once we obtained a vector of binary labels based on the test set, we need to save the binary vectors into a .txt file.
+## Data cleaning
 
-```{python}
-#| id: Cdb0lf_PjilF
-#| executionInfo: {elapsed: 408, status: ok, timestamp: 1645860489748, user: {displayName: Tommaso Rigon, photoUrl: 'https://lh3.googleusercontent.com/a-/AOh14GhoZ5uPN0szloXuIfFrSIPrIdooEMh4LTdjPP22=s64', userId: 08861669753495411183}, user_tz: -60}
-#| id: Cdb0lf_PjilF
-export_pred = pd.DataFrame(y_naive_bayes_pred, columns = ['response'])
-
-# The header and the index are removed as this is required by the platform
-export_pred.to_csv('naive_bayes_pred.txt', index = False, header = False)
-```
-
-Look for the `naive_bayes_pred.txt` file that has been created in your computer and / or download it from Google Colab. Of course you can name the file as you wish, perhaps with some name that reminds you the chosen method.
-
-Then, you can upload the file to the platform https://data-science-challenges.unibocconi.it and see how you scored on the partial leaderboard.
-
-# Let the challenge begin!
-
-![](https://datasciencebocconi.github.io/Images/data_challenge/platform.png)
-
-From here on, it's up to you. You can consult the code we used in class to fit more complex model than the above example. Here there are some advices:
-
-1.  Begin with **simple models** and understand what could be a "reasonable" accuracy score.
-2.  Some bugbears that you should catch in a preliminary phase of the competition are:
-    1.  Are there identical / extremely correlated variables? If so, you should delete the redundant ones.
-    2.  Are there constant variables? If so, they do not provide any information and can be deleted. Almost-constant variables can be often omitted as well.
-    3.  Are there missing values? If so, these aspects must be fixed before starting the modeling process.
-3.  In an advanced phase, try to fit **complex models**, such as the gradient boosting. However, these advanced methods require the choice of a huge number of parameters. Use the **official documentation** of `sklearn` to help you with this: https://scikit-learn.org/stable/supervised_learning.html#supervised-learning
-4.  Do **not overfit the training set**. Either split the data into "train" and "test" or perform **cross-validation**. In order to choose the best model, you must consider accuracies on hold-out data.
-5.  Do **not overfit the test set**. In practice, this means that you **should not look at the leaderboard** too often. Try to be conservative in your submissions.
