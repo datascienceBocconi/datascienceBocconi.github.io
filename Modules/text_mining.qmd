@@ -1,11 +1,14 @@
 ---
 jupyter: python3
 format:
+  ipynb: default
   html:
     theme: cosmo
     toc: true
     toc-title: Table of contents
     self-contained: true
+    code-line-numbers: true
+    smooth-scroll: true
 editor: 
   markdown: 
     wrap: 72
@@ -13,17 +16,75 @@ editor_options:
   chunk_output_type: console
 ---
 
-![](https://datasciencebocconi.github.io/Images/Other/logoBocconi.png)
+# Foundations of Data Science
 
+![](https://datasciencebocconi.github.io/Images/Other/logoBocconi.png)
 
 # Preliminaries
 
+```{python}
+# Loading the necessary libraries
+import pandas as pd
+import re
+import nltk
+```
+
 ## String manipulation
+
+```{python}
+monty = 'Monty Python'
+monty
+```
+
+```{python}
+circus = "Monty Python's Flying Circus"
+circus
+```
+
+```{python}
+circus = 'Monty Python\'s Flying Circus'
+circus
+```
+
+```{python}
+monty[0]
+monty[3]
+monty[5]
+monty[0:5] # From 0 to 5 (not including 5)
+```
+
+```{python}
+'hello' + 'very' + ' ' + 'much'
+'very' * 3
+```
+
+```{python}
+monty_list = monty.split()
+monty_list
+
+circus.split()
+```
+
+```{python}
+" ".join(monty_list)
+```
+
+#### Exercise
+
+Try running the following code, then try to use your understanding of the string `+` and `*` operations to figure out how it works. Be careful to distinguish between the string `' '`,which is a single white-space character, and `''`, which is the empty string.
+
+```{python}
+a = [1, 2, 3]
+b = [' ' * (3 - i) + 'python' * i for i in a]
+
+b
+```
 
 ## Regular expressions
 
-# Text mining
+<https://regexr.com>
 
+# Text mining
 
 ## The IMDB dataset
 
@@ -31,26 +92,239 @@ assd
 
 #### Description
 
-asdad
+n asdad
 
 #### Import the data
 
-
 ```{python}
-# Import basic libraries
-import pandas as pd
-import numpy as np
+#| cache: true
+# Let us import the dataset (it requires some time)
+imdb = pd.read_csv('https://datasciencebocconi.github.io/Data/IMDB_reviews.csv')
+imdb.shape # Size of the dataset
 ```
 
 ```{python}
-# Let us import the dataset (it may require some time)
-imdb = pd.read_csv('https://datasciencebocconi.github.io/Data/IMDB.csv')
-print(imdb.shape) # Size of the dataset
-```
-
-```{python}
-imdb.head(20)
+# Display the first 10 rows of this dataset
+imdb.head(10)
 ```
 
 ## Data cleaning
+
+```{python}
+# Let us have a look at a random review, say the 144th
+review = imdb.iloc[12, 0]
+review
+```
+
+#### Removing the HTML code
+
+```{python}
+# Removes the <br /> tag
+re.sub(r"<br />", " ", review)
+```
+
+[BeautifulSoup
+documentation](https://beautiful-soup-4.readthedocs.io/en/latest/)
+
+```{python}
+from bs4 import BeautifulSoup
+
+# Removes the <br />
+def remove_html(data):
+    data = BeautifulSoup(data)
+    return data.getText()
+```
+
+```{python}
+review = remove_html(review)
+review
+```
+
+```{python}
+def remove_abb(data):
+    data = re.sub(r"he's", "he is", data)
+    data = re.sub(r"there's", "there is", data)
+    data = re.sub(r"We're", "We are", data)
+    data = re.sub(r"That's", "That is", data)
+    data = re.sub(r"won't", "will not", data)
+    data = re.sub(r"they're", "they are", data)
+    data = re.sub(r"Can't", "Cannot", data)
+    data = re.sub(r"wasn't", "was not", data)
+    data= re.sub(r"aren't", "are not", data)
+    data = re.sub(r"isn't", "is not", data)
+    data = re.sub(r"What's", "What is", data)
+    data = re.sub(r"haven't", "have not", data)
+    data = re.sub(r"hasn't", "has not", data)
+    data = re.sub(r"There's", "There is", data)
+    data = re.sub(r"He's", "He is", data)
+    data = re.sub(r"It's", "It is", data)
+    data = re.sub(r"You're", "You are", data)
+    data = re.sub(r"I'M", "I am", data)
+    data = re.sub(r"shouldn't", "should not", data)
+    data = re.sub(r"wouldn't", "would not", data)
+    data = re.sub(r"i'm", "I am", data)
+    data = re.sub(r"I'm", "I am", data)
+    data = re.sub(r"Isn't", "is not", data)
+    data = re.sub(r"Here's", "Here is", data)
+    data = re.sub(r"you've", "you have", data)
+    data = re.sub(r"we're", "we are", data)
+    data = re.sub(r"what's", "what is", data)
+    data = re.sub(r"couldn't", "could not", data)
+    data = re.sub(r"we've", "we have", data)
+    data = re.sub(r"who's", "who is", data)
+    data = re.sub(r"y'all", "you all", data)
+    data = re.sub(r"would've", "would have", data)
+    data = re.sub(r"it'll", "it will", data)
+    data = re.sub(r"we'll", "we will", data)
+    data = re.sub(r"We've", "We have", data)
+    data = re.sub(r"he'll", "he will", data)
+    data = re.sub(r"Y'all", "You all", data)
+    data = re.sub(r"Weren't", "Were not", data)
+    data = re.sub(r"Didn't", "Did not", data)
+    data = re.sub(r"they'll", "they will", data)
+    data = re.sub(r"they'd", "they would", data)
+    data = re.sub(r"DON'T", "DO NOT", data)
+    data = re.sub(r"they've", "they have", data)
+    data = re.sub(r"i'd", "I would", data)
+    data = re.sub(r"should've", "should have", data)
+    data = re.sub(r"where's", "where is", data)
+    data = re.sub(r"we'd", "we would", data)
+    data = re.sub(r"i'll", "I will", data)
+    data = re.sub(r"weren't", "were not", data)
+    data = re.sub(r"They're", "They are", data)
+    data = re.sub(r"let's", "let us", data)
+    data = re.sub(r"it's", "it is", data)
+    data = re.sub(r"can't", "cannot", data)
+    data = re.sub(r"don't", "do not", data)
+    data = re.sub(r"you're", "you are", data)
+    data = re.sub(r"i've", "I have", data)
+    data = re.sub(r"that's", "that is", data)
+    data = re.sub(r"i'll", "I will", data)
+    data = re.sub(r"doesn't", "does not",data)
+    data = re.sub(r"i'd", "I would", data)
+    data = re.sub(r"didn't", "did not", data)
+    data = re.sub(r"ain't", "am not", data)
+    data = re.sub(r"you'll", "you will", data)
+    data = re.sub(r"I've", "I have", data)
+    data = re.sub(r"Don't", "do not", data)
+    data = re.sub(r"I'll", "I will", data)
+    data = re.sub(r"I'd", "I would", data)
+    data = re.sub(r"Let's", "Let us", data)
+    data = re.sub(r"you'd", "You would", data)
+    data = re.sub(r"It's", "It is", data)
+    data = re.sub(r"Ain't", "am not", data)
+    data = re.sub(r"Haven't", "Have not", data)
+    data = re.sub(r"Could've", "Could have", data)
+    data = re.sub(r"youve", "you have", data)  
+    return data
+```
+
+```{python}
+review = remove_abb(review)
+review
+```
+
+```{python}
+def remove_symb(data):
+    data = re.sub(r'\W', " ", data)
+    return data
+```
+
+
+```{python}
+review = remove_symb(review)
+review
+```
+
+## Tokenization
+
+```{python}
+nltk.word_tokenize(review)
+```
+
+```{python}
+from nltk.tokenize import TweetTokenizer
+review_tokens = TweetTokenizer().tokenize(review)
+review_tokens
+```
+
+
+```{python}
+text = nltk.Text(review_tokens)
+text
+
+text.concordance("played")
+```
+
+```{python}
+sorted(set(text))
+```
+
+```{python}
+len(text)
+len(set(text))
+len(set(text)) / len(text)
+```
+
+#### Stopwords
+
+```{python}
+from nltk.corpus import stopwords
+stopwords.words('english')
+```
+
+```{python}
+review_tokens = [words.lower() for words in review_tokens if words.lower() not in stopwords.words('english')]
+review_tokens 
+```
+
+
+```{python}
+nltk.WordNetLemmatizer().lemmatize(review_tokens[-2])
+```
+
+
+```{python}
+review_tokens1 = [nltk.WordNetLemmatizer().lemmatize(words) for words in review_tokens]
+sorted(set(review_tokens1))
+```
+
+
+```{python}
+review_tokens = [nltk.SnowballStemmer("english").stem(words) for words in review_tokens]
+sorted(set(review_tokens))
+```
+
+
+```{python}
+from nltk.tokenize.treebank import TreebankWordDetokenizer
+detokenizer = TreebankWordDetokenizer()
+detokenizer.detokenize(review_tokens)
+```
+
+## Denoise the whole dataset
+
+```{python}
+def clean_review(review):
+  review = remove_html(review)
+  review = remove_abb(review)
+  review = remove_symb(review)
+  review_tokens = TweetTokenizer().tokenize(review)
+  review_tokens = [words.lower() for words in review_tokens if words.lower() not in stopwords.words('english')]
+  review_tokens = [nltk.SnowballStemmer("english").stem(words) for words in review_tokens]
+  review = detokenizer.detokenize(review_tokens)
+  return review
+```
+
+```{python}
+imdb.iloc[4,0]
+clean_review(imdb.iloc[4,0])
+```
+
+
+```{python}
+# This will take some time
+imdb['review_clean'] = imdb['review'].apply(lambda z: clean_review(z))
+imdb.head(10)
+```
 
