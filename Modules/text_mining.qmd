@@ -99,7 +99,7 @@ n asdad
 ```{python}
 #| cache: true
 # Let us import the dataset (it requires some time)
-imdb = pd.read_csv('https://datasciencebocconi.github.io/Data/IMDB_reviews.csv')
+imdb = pd.read_csv('https://datasciencebocconi.github.io/Data/IMDB_small.csv')
 imdb.shape # Size of the dataset
 ```
 
@@ -326,5 +326,27 @@ clean_review(imdb.iloc[4,0])
 # This will take some time
 imdb['review_clean'] = imdb['review'].apply(lambda z: clean_review(z))
 imdb.head(10)
+```
+
+## Frequency analysis
+
+```{python}
+words  = ' '.join(imdb['review_clean'])
+tokens = nltk.word_tokenize(words)
+text = nltk.Text(tokens)
+
+fdist = nltk.FreqDist(text)
+fdist
+
+fdist.keys()
+fdist.plot(50, cumulative = True)
+```
+
+
+
+
+```{python}
+from wordcloud import WordCloud
+
 ```
 

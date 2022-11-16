@@ -2,8 +2,6 @@ import nltk
 import pandas as pd
 import re
 
-
-
 # Data cleaning -----------------------------------
 
 # Removes the <br />
