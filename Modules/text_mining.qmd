@@ -337,16 +337,32 @@ text = nltk.Text(tokens)
 
 fdist = nltk.FreqDist(text)
 fdist
-
-fdist.keys()
-fdist.plot(50, cumulative = True)
 ```
 
 
+```{python}
+from sklearn.feature_extraction.text import CountVectorizer
+vectorizer = CountVectorizer(max_features = 20)
+X = vectorizer.fit_transform(imdb['review'])
+```
+
+```{python}
+X.shape
+vectorizer.get_feature_names_out()
+print(X.toarray())
+```
 
 
 ```{python}
-from wordcloud import WordCloud
+from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer = TfidfVectorizer(max_features = 80)
+X = vectorizer.fit_transform(imdb['review'])
+```
 
+
+```{python}
+X.shape
+vectorizer.get_feature_names_out()
+print(X.toarray())
 ```
 
