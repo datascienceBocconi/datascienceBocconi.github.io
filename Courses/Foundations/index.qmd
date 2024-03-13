@@ -61,8 +61,8 @@ The structure of the course and the teaching material is provided below.
 
 ### Evaluation protocol
 
-* 9/31 of the mark is on the basis of exercises 
+* 7/31 of the mark is on the basis of exercises 
 
-*	13/31 of the mark is for a group project for Part B, done in groups of approx. 4. This will take the form of a hackathon managed through the Bocconi Data Science Challenges Platform. 
+*	15/31 of the mark is for a group project for Part B, done in groups of approx. 4. This will take the form of a hackathon managed through the Bocconi Data Science Challenges Platform. 
 
 *	9/31 of the mark is based on an individual final exam
