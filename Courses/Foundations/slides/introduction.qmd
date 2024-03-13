@@ -1,0 +1,79 @@
+---
+title: "Foundations of Data Science"
+author: "Om"
+format:
+  #gfm: default
+  revealjs:
+    # smaller: true # reduce the font
+    html-math-method: katex
+    callout-appearance: minimal
+    theme: dark # alternative themes (subset): default, night
+    embed-resources: true
+    # incremental: true  # Remove comment if you like incremental bullet points
+    # logo: https://datasciencebocconi.github.io/Images/Other/logoBocconi.png
+    footer: "[Home page](https://datasciencebocconi.github.io/Courses/Foundations/)"
+---
+
+# Section 1
+
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished presentation. 
+
+To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. 
+
+You can embed code like this:
+
+```{r}
+#| echo: true
+1 + 1
+```
+
+# Case studies
+
+## Case study 1: IMDb dataset
+
+![](https://datasciencebocconi.github.io/Images/text_mining/imdb.png)
+
+## Case study 1: IMDb dataset
+
+The Internet Movie Database ([IMDb](https://www.imdb.com)) is a popular website for film reviews.
+
+ - Can we automatically identify the **sentiment** of a review?
+ - Can we predict the **IMDb rating** of a film, based on its reviews?
+
+There are also a lot of practical problems:
+
+  - How do we **pre-process** and **clean** the data?
+  - How do we **convert words into numbers**?
+
+## Case study 2: sales price prediction
+
+![](https://datasciencebocconi.github.io/Images/casestudy_housing/housesbanner.png){width=100%}
+
+What is the right **price** for a **house** in Ames, Iowa?
+
+In statistical terms: can you **predict** the final price based on the characteristic of the house?
+
+This is a **[Kaggle](https://www.kaggle.com)** playground competition.  You will be asked to join the competition along with other thousands of players!
+
+## Case study 3: the data challenge
+
+![](https://datasciencebocconi.github.io/Images/data_challenge/platform.png){fig-align="center"}
+
+The dataset will be disclosed at the kick-off date!
+
+Your goal will be to construct a model which has good predictive performance.
+

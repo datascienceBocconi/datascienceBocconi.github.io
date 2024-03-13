@@ -1,0 +1,12 @@
+---
+format: 
+  html:
+    self-contained: true
+editor: visual
+---
+
+![](https://datasciencebocconi.github.io/Images/Other/logoBocconi.png)
+
+## Data science at Bocconi
+
+Welcome to the [github](http://github.com/) page of the course *Foundations of Data Science* at [Bocconi University](https://www.unibocconi.eu/). In this repository we will collect data, images, source code and other relevant material.
