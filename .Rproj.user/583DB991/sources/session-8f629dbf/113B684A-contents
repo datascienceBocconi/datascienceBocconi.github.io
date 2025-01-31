@@ -1,0 +1,372 @@
+---
+title: Foundations of Data Science
+author: 
+  - Prof Omiros Papaspiliopoulos <br> (aka Om)
+  - Dr Tommaso Rigon <br> (aka Tommy)
+  - Dr Cristian Castiglione <br> 
+format:
+  #gfm: default
+  revealjs:
+    # smaller: true # reduce the font
+    slide-number: true
+    html-math-method: katex
+    callout-appearance: minimal
+    theme: dark # alternative themes (subset): default, night
+    embed-resources: true
+    # incremental: true  # Remove comment if you like incremental bullet points
+    # logo: https://datasciencebocconi.github.io/Images/Other/logoBocconi.png
+    #footer: "[Home page](https://datasciencebocconi.github.io/Courses/Foundations/)"
+---
+
+# What this course is (and is not) about
+
+------------------------------------------------------------------------
+
+*"If it is written in Python, it's probably machine learning*
+
+*If it is written in PowerPoint, it's probably AI"*
+
+(Mat Velloso, Microsoft)
+
+::: {.notes}
+
+Why course in Python
+
+:::
+
+------------------------------------------------------------------------
+
+## My personal view on Data Science
+
+-   Provides "literacy" to empower people to understand and take decisions in a highly measurable world!
+
+-   It is the Science between the human and the data
+
+## The Data Science agenda
+
+-   Creating value from
+-   <span style="color:DarkOrange"> Collecting, warehousing, curating</span> 
+-   Communicating
+-   Legislating about
+-   <span style="color:DarkOrange"> Learning from </span>
+
+Data!
+
+## Learning from data
+
+-   [Prediction]{style="color:DarkOrange"}
+-   Inference
+-   [Causality]{style="color:DarkOrange"}
+-   Uncertainty quantification
+
+::: {.notes}
+
+predictive modelling vs structural learning
+
+example of inference: testing
+
+inference to some small extent covered in other course
+
+also prediction (BAI/BEMACS) but here we will have a synthetic approach that branches out to all other three priorities
+
+:::
+
+## Three main parts of the course
+
+- Warehousing and curating
+- Predictive modelling
+- Causal inference 
+
+## Warehousing and curating
+
+-   Information retrieval and database management with `pandas`
+-   Tidy data
+-   Missing data
+-   Good practices 
+-   *Documentation* - this course created with <span style="color:DarkOrange">markdown+HTML</span> (via Quarto)
+    -   Check out on [Aaron Swartz](https://it.wikipedia.org/wiki/Aaron_Swartz)
+
+##  Predictive modelling
+
+-   High-dimensional predictive regression models, shrinkage and selection
+-   Model selection (split-sample, bootstrap, information criteria, predictive vs structural learning)
+-   Classification
+-   Trees, forests, bagging and boosting
+
+## Causal inference 
+
+-   Causal inference vs predictive modelling
+-   Foundations of causal inference
+-   Causal inference meets predictive modelling
+
+# Course organisation and evaluation
+
+## Who is in this class
+
++ Multi-culti
+
++ Past experiences
+
++ Who is not in the class
+
+
+## Structure
+
+-   Course organized along the three themes
+-   Main lectures by Om
+    -   Mix of Jupyter notebooks and slides
+    -   Available from the previous day on **blackboard**
+-   Data challenges by Tommy
+-   A few TA sessions on basics by Cristian
+-   Course organisation here: <https://datasciencebocconi.github.io/Courses/Foundations/>
+
+::: {.notes}
+
+- how to work with notebooks - locally vs collab
+- questions on basic python stuff - colleagues and Pier 
+- do not interrupt the class if something does not run on your computer for whatever reason
+:::
+
+## Materials
+
++ The slides and the jupyter notebooks that are used in the lectures
+
++ For all themes I will be providing slides that are at a more introductory level and I have prepared them for a different course
+  + For most these slides will be **very** helpful
+  + I would advise to study them before anything else
+  
+---
+
++ References at the slides and notebooks that could be consulted
+
++ All material will be given before the classes and should be studied, and ideally already experiment with the notebooks
+
+## Expectations
+
+-   The course should work on multiple levels
+-   Depending on your background, previous exposure, and capacity in the material you should set your goals accordingly
+    -   Some will go very far into developing methods and understanding underlying theory
+    -   Others will learn sufficiently to use and slightly modify existing code but have a good intuition of the methods and their limitations
+-   You will work in groups of 3-5
+
+## Evaluation
+
+1.  6/31 project (group work)
+    - data cleaning (practical) 
+    - will be given ~ end of Feb  
+    
+2.  13/31 project (group work)
+    - data challenge through the Bocconi Data Science Challenges Platform (group work)
+
+---
+    
+3.  3/31 project (group work) 
+    - small project on causal inference and predictive modelling
+    - will be given ~ April
+ 
+4.  9/31 exam (individual)
+    -   Multiple choice
+    -   Based on questions on basic knowledge and statistical challenges
+    -   Individualized data
+    -   Open book with laptops
+    
+## Alternative projects
+
++ A small number of alternative - more challenging - projects
+  + Linked to Bachelor Thesis
+
+# Case studies
+
+## Case study 1: IMDb dataset
+
+![](https://datasciencebocconi.github.io/Images/text_mining/imdb.png)
+
+## Case study 1: IMDb dataset
+
+The Internet Movie Database ([IMDb](https://www.imdb.com)) is a popular website for film reviews.
+
+-   Can we automatically identify the **sentiment** of a review?
+-   Can we predict the **IMDb rating** of a film, based on its reviews?
+
+There are also a lot of practical problems:
+
+-   How do we **pre-process** and **clean** the data?
+-   How do we **convert words into numbers**?
+
+## Case study 2: sales price prediction
+
+```{=html}
+<img
+src="https://datasciencebocconi.github.io/Images/ames_housing/housesbanner.png"
+style="width:100.0%" />
+```
+What is the right **price** for a **house** in Ames, Iowa?
+
+In statistical terms: can you **predict** the final price based on the characteristic of the house?
+
+This is a [**Kaggle**](https://www.kaggle.com) playground competition. You will be asked to join the competition along with other thousands of players!
+
+## Case study 3: the data challenge
+
+```{=html}
+<img
+src="https://datasciencebocconi.github.io/Images/data_challenge/platform.png"
+data-fig-align="center"
+style="width:70.0%"/>
+```
+The dataset will be disclosed at the kick-off date!
+
+Your goal will be to construct a model which has good predictive performance. 
+
+# Course overview
+
+## Supervised learning
+
+- Output variable (*response*) $y$
+- Input variables (*predictors,covariates*) $\bm{x}$ 
+- Goal: <span style="color:DarkOrange">learn</span> a function $f(\bm{x})$ that predicts $y$ 
+    - $f(\cdot)$ is a function of the input $\bm{x}$ that <span style="color:DarkOrange">correlates highly</span> with $y$
+    - Learn $f(\cdot)$ by observing many examples/datapoints $(\bm{x}_i,y_i), i=1,\ldots,n$
+  
+--- 
+
+The origins of statistical machine learning: 
+
+```{=html}
+<img
+src="https://datasciencebocconi.github.io/Images/intro/samuel.png"
+data-fig-align="center"
+style="width:100.0%"/>
+```
+
+---
+
+```{=html}
+<img
+src="https://datasciencebocconi.github.io/Images/intro/logistic.png"
+data-fig-align="center"
+style="width:100.0%"/>
+```
+
+## Statistics and Machine Learning
+
+```{=html}
+<img
+src="https://datasciencebocconi.github.io/Images/intro/stats_ml.png"
+data-fig-align="center"
+style="width:100.0%"/>
+```
+
+## Learning good predictive models
+
+- Comes down to learning functions of the inputs that correlate highly with the output
+- In the course we will explore two fundamental ways of doing this
+    - High-dimensional regression
+    - Tree-based models
+  
+## High-dimensional linear regression  
+    
+- $\bm{x}$ consists of $p$ variables where $p$ is large, maybe even $p>>n$
+    - Record hundreds of variables per person
+    - Unstructured input <span style="color:DarkOrange"> transformed </span> to numerical variables (images,<span style="color:DarkOrange"> text </span>)
+    - Basis expansions (polynomials, splines, wavelets, kernels, etc)
+    
+---
+
+- Take a linear combination of the inputs and learn the coefficients
+$$f(\bm{x},\bm{\beta}) = \sum_j \beta_j x_j$$ 
+- Having a vast number of inputs gives a better chance to find a linear combination that correlates highly with output
+- Challenge is how to <span style="color:DarkOrange"> train </span> the model so that something interesting comes out
+
+## Tree-based models
+
+- In this approach we learn a <span style="color:DarkOrange"> partition </span> of the input space into non-overlapping regions
+- We learn the partition by **sequential binary splitting**, which corresponds to <span style="color:DarkOrange"> decision tree </span>
+- If $R_1,\ldots,R_M$ are the $M$ regions that define the partition, then the model is simply: 
+$$f(\bm{x},\bm{\beta}) = \beta_j,\quad \textrm{if} \quad \bm{x} \in R_j$$ 
+for coefficients $\beta_j$ that we will also learn from data
+---
+
+- Here is an example with two inputs, "Years" and "Hits" [(in a baseball salary prediction problem)](https://rpubs.com/cyobero/regression-tree)
+
+
+```{=html}
+<figure>
+<img
+src="https://datasciencebocconi.github.io/Images/DecisionTrees/example_tree.jpeg"
+data-fig-align="center"
+style="width:100.0%"/>
+</figure>
+```
+
+::: {.notes}
+
+the blue colours are links to relevant pages
+
+:::
+
+## Some common issues
+
+- Formulating learning as optimization: likelihood
+- Selection and shrinkage (<span style="color:DarkOrange">regularization</span>) for dealing with many parameters 
+- Convex and non-convex optimization and algorithms
+- Evaluating predictive performance and model choice
+
+
+## Causal inference: the context
+
+
+- $y$ the variable that we wish to <span style="color:DarkOrange"> influence</span>; e.g., development of certain cancer (yes/no), serious illness from COVID (yes/no)
+- $t$ <span style="color:DarkOrange"> treatment</span>/intervention variable; e.g., smoking (yes/no), vaccine (yes/no)
+- $\bm{x}$ other (maybe) relevant input variables that can affect $y$ for given $t$; e.g., sex, age, asthma condition
+
+---
+
+In this context we want to build a model that predicts what $y$ will be when we <span style="color:DarkOrange"> intervene and set the value</span> of $t$, and when other (maybe) relevant variables are $\bm{x}$  
+
+That is *very different* from finding functions $f(\bm{x},t)$ that correlate highly with $y$!
+
+--- 
+
+For example: 
+
+- development of lung cancer ($y$, yes/no) is ([provably](https://tobaccocontrol.bmj.com/content/21/2/87)) related to smoking ($t$, yes/no) 
+- For the sake of an example, suppose that people who smoke are big potato chip consumers ($x$ yes/no) - this is a joke! 
+- Then, a good predictive model for development of lung cancer is one that uses information on whether the person eats chips. This could be a very good model for flagging patients in danger of lung cancer. However, it would be useless if we use it to predict how likely is to develop cancer if we ask the patient to stop eating chips
+
+## From prediction to intervention
+
+- Learning causal relationships from <span style="color:DarkOrange"> observational data</span>, i.e., by collecting available data $(\bm{x}_i,t_i,y_i)$
+- Confounders: variables $\bm{x}$ correlated both with $t$ and $y$
+- Heterogenous treatment effects: the causal effect of $t$ on $y$ (if any) might be very different depending on $\bm{x}$; for example a sub-groups of patients (e.g. older women with asthma) might be benefitting from a vaccine but the rest not
+
+We will see how we can use predictive models  appropriately for causal inference. 
+
+## The Predictability-Computability-Stability framework 
+
+This is a nice framework for <span style="color:DarkOrange"> useful and responsible Data Science</span>, one that this course subscribes to
+
+```{=html}
+<img
+src="https://datasciencebocconi.github.io/Images/intro/veridical.png"
+data-fig-align="center"
+style="width:100.0%"/>
+```
+
+---
+
+- <span style="color:DarkOrange"> Predictability</span>: the capacity of the ML model to predict well new observations
+- Computability: training and predicting with the ML model to be computationally efficient
+- <span style="color:DarkOrange"> Stability</span>: it relates to a number of fundamental concepts in Science, such as **reproducibility and robustness**; loosely speaking it refers to how much predictions would change if model/data were to change a little bit
+
+## Example of instability 
+
+```{=html}
+<figure>
+<img
+src="https://datasciencebocconi.github.io/Images/intro/gibbon.png"
+data-fig-align="center"
+style="width:100.0%"/>
+<figcaption>From the Deep Learning book</figcaption>
+</figure>
+```
