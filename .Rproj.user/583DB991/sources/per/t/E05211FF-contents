@@ -1,0 +1,81 @@
+---
+title: Foundations of data Science
+format:
+  # revealjs: default # Please comment this line if you want the website version instead
+  html:
+    theme: cosmo # alternative themes (subset): united, yeti
+    self-contained: true
+    toc: true
+    highlight-style: ayu
+---
+
+![](https://datasciencebocconi.github.io/Images/Other/logoBocconi.png)
+
+
+## General objectives
+
+The purpose of the course is to bring Bocconi at the international forefront of undergraduate education in Social Sciences by providing a hands-on training on Data Science even to people that are less exposed to this material.
+
+The course is based on the instructor's past experience of communicating this material to non-expert and material he has compiled to this end. The course follows a hands-on approach based on [notebooks](https://jupyter.org) using Python implementations on a [Google Colab](https://colab.research.google.com) environment.
+
+It motivates and illustrates of all main ideas using real datasets and real Social Science motivating questions. Instructions will be circulated before the beginning of the course to ensure students are sufficiently prepared for the computing component.
+
+## Three main parts of the course
+
+#### Part A. Basics
+
+- Foundations of Learning from data  
+- Basic data management and informational retrieval with `pandas`  
+- Preparing, tidying and preprocessing data  
+
+#### Part B. Predictive modelling
+
+- High-dimensional regression and lasso  
+- Model selection  
+- Classification  
+- Trees, forests, bagging and boosting  
+
+#### Part C. Causal inference and uncertainty quantification
+
+- Causal inference: foundations  
+- Causal inference: lasso and post-selection inference  
+- Causal inference: heterogeneous treatment effects and trees  
+- Stability  
+- Prediction and uncertainty quantification  
+
+
+## Evaluation
+
+1.  6/31 project (group work)
+    - data cleaning (practical) 
+    - will be given ~ end of Feb  
+    
+2.  13/31 project (group work)
+    - data challenge through the Bocconi Data Science Challenges Platform (group work)
+
+3.  3/31 project (group work) 
+    - small project on causal inference and predictive modelling
+    - will be given ~ April
+ 
+4.  9/31 exam (individual)
+    -   Multiple choice
+    -   Based on questions on basic knowledge and statistical challenges
+    -   Individualized data
+    -   Open book with laptops
+    
+## Resources
+
+-   The machine learning parts of the course are based on the **books**:
+    -   [Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/), by Hastie, Tibshirani and Friedman;
+    -   [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf), by Bishop;
+-   Some textbooks that cover more foundational aspects of learning from data, part of which might be used for motivation in the course involve:
+    -   Art of Statistics: Learning from Data, by Sir David Spiegelhalter;
+-   A few articles that are broadly accessible and discuss fundamentals of working with and learning from data, and should be consulted are:
+    -   [Statistical Modeling: The Two Cultures (2001)](https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full) by Leo Breiman;
+    -   [Prediction, Estimation and Attribution (2020)](https://www.tandfonline.com/doi/full/10.1080/01621459.2020.1762613) by Brad Efron;
+    -   [Statistics in the big data era: Failures of the machine (2018)](https://www.sciencedirect.com/science/article/pii/S0167715218300737) by David Dunson;
+    -   [50 years of Data Science (2017)](https://www.tandfonline.com/doi/full/10.1080/10618600.2017.1384734) by David Donoho;
+    -   Tidy Data (2014) by Hadley Wickham;
+    -   Veridical Data Science (2020) by Yu and Kumbier.
+
+Additional references will be provided for the causal inference part of the course.

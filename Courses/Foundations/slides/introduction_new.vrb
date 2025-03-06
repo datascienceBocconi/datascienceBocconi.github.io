@@ -1,0 +1,16 @@
+\frametitle{Code}
+\protect\hypertarget{code}{}
+When you click the \textbf{Render} button a presentation will be
+generated that includes both content and the output of embedded code.
+
+You can embed code like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
