@@ -3269,21 +3269,21 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="assignment-rules-and-evaluation-criteria">Assignment rules and evaluation criteria</h2>
 <p>The dataset contains information about <strong>bookings</strong> made at a resort hotel. Please refer to the <a href="https://datasciencebocconi.github.io/Courses/Foundations/web/hotels_homework.html">former assignment</a> for a detailed description of each variable.</p>
 <p>In this version of the dataset, there is a <strong>new variable</strong> (<code>response</code>) that indicates whether a booking was canceled (<code>response = 2</code>) or not (<code>response = 1</code>). On the other hand, the variables <code>LeadTime</code> and <code>ArrivalDateDayOfMonth</code> have been <strong>removed</strong>.</p>
-<p>Your goal is to predict the <code>response</code> variable.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>Your goal is to predict the <code>response</code> variable using the variables at your disposal.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>When tidying the data, many of you noticed that there are <strong>duplicate</strong> entries. According to the original source (for the sake of this assignment, let us trust them), these are legitimate bookings with identical covariates. In any event, it is true some of these bookings were canceled, while others were not.</p>
+<p>When tidying the data, many of you noticed that there are <strong>duplicated</strong> entries. According to the original source, these are legitimate bookings with identical covariates. For the sake of this assignment, let us trust the source. In any event, some of these “duplicated” bookings were canceled, while others were not.</p>
 </div>
 </div>
-<p>Submissions are evaluated using the <strong>1 - accuracy</strong> between the predicted response and the observed target (<code>response</code>), that is</p>
+<p>Submissions are evaluated using the <strong>1 - accuracy</strong>, that is, the average error between the predicted response and the observed target (<code>response</code>), that is</p>
 <p><span class="math display">\[
 \text{average error} = 1 - \text{accuracy} = \frac{1}{n}\sum_{i=1}^{n} \mathbb{I}(y_i \neq \hat{y}_i).
 \]</span></p>
@@ -3298,6 +3298,8 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>The training, public, and private datasets correspond to roughly 67%, 10%, and 23% of the original data, respectively. These subsets have <strong>not</strong> been randomly sampled. Indeed, the training set related to data point of 2015 and 2016, whereas you will be evaluated on data of 2017!</p>
+<p>You are allowed to use methodologies and predictive algorithms that have not been presented in class. However, if you do so, you must be able to explain them in the report and, potentially, in class.</p>
+<p>You are <strong>not</strong> allowed to use any <strong>external data</strong>, including the data from the previous assignment.</p>
 </div>
 </div>
 <p>In this competition, you will be evaluated based on:</p>
@@ -3310,21 +3312,21 @@ Warning
 <section id="import-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="import-the-data">Import the data</h2>
 <p>You can download the data from the <a href="https://data-science-challenges.unibocconi.it" class="uri">https://data-science-challenges.unibocconi.it</a> platform or use the following code.</p>
-<div id="5f6c6a66" class="cell" data-execution_count="1">
+<div id="f00f3af3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Import basic libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cfa746f9" class="cell" data-execution_count="2">
+<div id="df318ecc" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># The training dataset comprises 26881 rows and 19 columns</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>bookings <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://datasciencebocconi.github.io/Data/hotels_train.csv&quot;</span>)</span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># The training dataset comprises 13179 rows and 18 columns (the label `response` is not available)</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># The prediction dataset comprises 13179 rows and 18 columns (the label `response` is not available)</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a>bookings_pred <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://datasciencebocconi.github.io/Data/hotels_test.csv&quot;</span>)</span>
 <span id="cb2-6"><a href="#cb2-6"></a></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co"># Let&#39;s have a look at the training dataset</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>bookings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="57">
 <div>
 
 
@@ -3604,7 +3606,7 @@ Warning
 </div>
 </div>
 <p>We implement a simple model (logistic regression model) to illustrate how to submit your prediction.</p>
-<div id="ca2be02f" class="cell" data-execution_count="3">
+<div id="555053d8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Consider here a couple of variables variable</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>X <span class="op">=</span> bookings[[<span class="st">&#39;ADR&#39;</span>, <span class="st">&#39;RequiredCarParkingSpaces&#39;</span>]]</span>
 <span id="cb3-3"><a href="#cb3-3"></a>X_pred  <span class="op">=</span> bookings_pred[[<span class="st">&#39;ADR&#39;</span>, <span class="st">&#39;RequiredCarParkingSpaces&#39;</span>]]</span>
@@ -3612,7 +3614,7 @@ Warning
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co"># Here, we create the numeric outcome</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a>y <span class="op">=</span> bookings[<span class="st">&quot;response&quot;</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7ab00a9a" class="cell" data-execution_count="4">
+<div id="2ef7d771" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Import a naive Bayes function</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
@@ -3623,12 +3625,12 @@ Warning
 <span id="cb4-8"><a href="#cb4-8"></a><span class="co"># Predict values on the prediction set</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a>y_logistic_pred <span class="op">=</span> m_logistic.predict(X_pred)</span>
 <span id="cb4-10"><a href="#cb4-10"></a>y_logistic_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>array([1, 1, 1, ..., 1, 1, 1])</code></pre>
 </div>
 </div>
 <p>Once we obtain a vector of numeric values based on the test set, we must save the vector into a .txt file.</p>
-<div id="85e2c71c" class="cell" data-execution_count="5">
+<div id="ddaf578b" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>export_pred <span class="op">=</span> pd.DataFrame(y_logistic_pred, columns <span class="op">=</span> [<span class="st">&#39;response&#39;</span>])</span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="co"># The header and the index are removed as this is required by the platform</span></span>
