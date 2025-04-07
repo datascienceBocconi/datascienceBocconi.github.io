@@ -3288,20 +3288,20 @@ Warning
 </div>
 <p>In this competition, you will be evaluated based on:</p>
 <ul>
-<li>A <strong>.pdf report (at most three pages)</strong> that you will need to enclose in the data competition platform before the deadline;</li>
-<li>The <strong>final accuracy score</strong> on the test set. Please note that only the last submission is evaluated.</li>
+<li><p>A <strong>.pdf report (at most three pages)</strong> that you will need to enclose in the data competition platform before the deadline;</p></li>
+<li><p>The <strong>final accuracy score</strong> on the test set. Please note that only the last submission is evaluated.</p></li>
 </ul>
 <p>The winning teams will present their work in class.</p>
 </section>
 <section id="import-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="import-the-data">Import the data</h2>
 <p>You can download the data from the <a href="https://data-science-challenges.unibocconi.it" class="uri">https://data-science-challenges.unibocconi.it</a> platform or use the following code.</p>
-<div id="ef524103" class="cell" data-execution_count="1">
+<div id="6f8f9cf6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Import basic libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d04748c1" class="cell" data-execution_count="2">
+<div id="c6629597" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># The training dataset comprises 26881 rows and 19 columns</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>bookings <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://datasciencebocconi.github.io/Data/hotels_train.csv&quot;</span>)</span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
@@ -3310,7 +3310,7 @@ Warning
 <span id="cb2-6"><a href="#cb2-6"></a></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co"># Let&#39;s have a look at the training dataset</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>bookings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -3594,7 +3594,7 @@ Warning
 <section id="submit-a-prediction" class="level2">
 <h2 class="anchored" data-anchor-id="submit-a-prediction">Submit a prediction</h2>
 <p>We implement a simple model (logistic regression model) to illustrate how to submit your prediction.</p>
-<div id="8d5df12d" class="cell" data-execution_count="3">
+<div id="a42fdf92" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Consider here a couple of variables variable</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>X <span class="op">=</span> bookings[[<span class="st">&#39;ADR&#39;</span>, <span class="st">&#39;RequiredCarParkingSpaces&#39;</span>]]</span>
 <span id="cb3-3"><a href="#cb3-3"></a>X_pred  <span class="op">=</span> bookings_pred[[<span class="st">&#39;ADR&#39;</span>, <span class="st">&#39;RequiredCarParkingSpaces&#39;</span>]]</span>
@@ -3602,7 +3602,7 @@ Warning
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co"># Here, we create the numeric outcome</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a>y <span class="op">=</span> bookings[<span class="st">&quot;response&quot;</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a756d0e2" class="cell" data-execution_count="4">
+<div id="c2732439" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Import a naive Bayes function</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
@@ -3613,12 +3613,12 @@ Warning
 <span id="cb4-8"><a href="#cb4-8"></a><span class="co"># Predict values on the prediction set</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a>y_logistic_pred <span class="op">=</span> m_logistic.predict(X_pred)</span>
 <span id="cb4-10"><a href="#cb4-10"></a>y_logistic_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>array([1, 1, 1, ..., 1, 1, 1])</code></pre>
 </div>
 </div>
 <p>Once we obtain a vector of numeric values based on the test set, we must save the vector into a .txt file.</p>
-<div id="60858db5" class="cell" data-execution_count="5">
+<div id="b6b9632c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>export_pred <span class="op">=</span> pd.DataFrame(y_logistic_pred, columns <span class="op">=</span> [<span class="st">&#39;response&#39;</span>])</span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="co"># The header and the index are removed as this is required by the platform</span></span>
